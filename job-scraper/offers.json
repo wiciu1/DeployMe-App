@@ -1,0 +1,305 @@
+{
+  "NFJ": [
+    {
+      "title": "Junior Delivery Engineer",
+      "company": "MasterBorn",
+      "experience": "Junior",
+      "datePosted": "2025-07-18",
+      "validThrough": "2025-08-17",
+      "location": "Zdalnie",
+      "salary": "10000 PLN/Month",
+      "skills": [
+        "SQL",
+        "database",
+        "Microsoft Software Suite",
+        "ETL",
+        "ELT",
+        "Python",
+        "AzureDevops",
+        "Jira"
+      ],
+      "site": "NoFluffJobs",
+      "url": "https://nofluffjobs.com/pl/job/junior-delivery-engineer-masterborn-remote-1"
+    },
+    {
+      "title": "Remote Junior Backend Developer (PHP/Symfony)",
+      "company": "Appstronauts",
+      "experience": "Junior",
+      "datePosted": "2025-06-30",
+      "validThrough": "2025-07-30",
+      "location": "Zdalnie",
+      "salary": "8500 PLN/Month",
+      "skills": [
+        "PHP",
+        "REST API",
+        "JSON",
+        "Symfony",
+        "PostgreSQL",
+        "Nginx",
+        "Proxy",
+        "Azure Functions",
+        "Microservices architecture",
+        "Laravel",
+        "Azure",
+        "Cloud platform",
+        "HTML",
+        "JavaScript"
+      ],
+      "site": "NoFluffJobs",
+      "url": "https://nofluffjobs.com/pl/job/remote-junior-backend-developer-php-symfony-appstronauts"
+    },
+    {
+      "title": "Inżynier Wsparcia Technicznego (TypeScript / React)",
+      "company": "Makeitright Sp. z o.o.",
+      "experience": "Junior",
+      "datePosted": "2025-08-04",
+      "validThrough": "2025-09-03",
+      "location": "Zdalnie",
+      "salary": "140 PLN/Hour",
+      "skills": [
+        "TypeScript",
+        "React",
+        "HubSpot",
+        "SLA"
+      ],
+      "site": "NoFluffJobs",
+      "url": "https://nofluffjobs.com/pl/job/inzynier-wsparcia-technicznego-typescript-react-makeitright-remote"
+    },
+    {
+      "title": "Trainee Node developer ",
+      "company": "Innowise",
+      "experience": "Trainee",
+      "datePosted": "2025-07-28",
+      "validThrough": "2025-08-27",
+      "location": "Warsaw",
+      "salary": "Nie określono",
+      "skills": [
+        "JavaScript",
+        "HTML",
+        "Node.js",
+        "CSS",
+        "Object-oriented programming",
+        "Security",
+        "Node.js",
+        "Relational database",
+        "SQL",
+        "React",
+        "Angular",
+        "Vue.js",
+        "TypeScript",
+        "MongoDB",
+        "NoSQL",
+        "Mocha",
+        "ORM",
+        "Docker Compose"
+      ],
+      "site": "NoFluffJobs",
+      "url": "https://nofluffjobs.com/pl/job/trainee-node-developer-innowise-warsaw-1"
+    },
+    {
+      "title": "Praktykant(ka) Backend Developer (Java+Spring)",
+      "company": "Matseboss Solutions",
+      "experience": "Trainee",
+      "datePosted": "2025-08-05",
+      "validThrough": "2025-09-04",
+      "location": "Zdalnie",
+      "salary": "Nie określono",
+      "skills": [
+        "Java",
+        "Spring"
+      ],
+      "site": "NoFluffJobs",
+      "url": "https://nofluffjobs.com/pl/job/praktykant-ka-backend-developer-java-spring-matseboss-solutions-remote"
+    }
+  ],
+  "JJIT": [
+    {
+      "title": "Stażysta / Praktykant w dziale iOS",
+      "company": "Yanosik",
+      "experience": "Staż",
+      "salary": "Nie określono",
+      "location": "Poznań",
+      "datePosted": "2025-08-04",
+      "validThrough": "2025-08-28",
+      "skills": [
+        "Swift"
+      ],
+      "site": "JustJoinIT",
+      "url": "https://justjoin.it/job-offer/yanosik-stazysta-praktykant-w-dziale-ios-poznan-mobile"
+    },
+    {
+      "title": "Stażysta / Praktykant w dziale Android",
+      "company": "Yanosik",
+      "experience": "Staż",
+      "salary": "Nie określono",
+      "location": "Poznań",
+      "datePosted": "2025-08-04",
+      "validThrough": "2025-09-03",
+      "skills": [
+        "Android",
+        "Kotlin"
+      ],
+      "site": "JustJoinIT",
+      "url": "https://justjoin.it/job-offer/yanosik-stazysta-praktykant-w-dziale-android-poznan-mobile"
+    },
+    {
+      "title": "Data Engineer &amp; Data Analyst Internship Program (She/He/They)",
+      "company": "Accenture",
+      "experience": "Staż",
+      "salary": "Nie określono",
+      "location": "Katowice",
+      "datePosted": "2025-08-04",
+      "validThrough": "2025-08-24",
+      "skills": [
+        "English",
+        "Polish",
+        "SQL",
+        "Big Data",
+        "Data"
+      ],
+      "site": "JustJoinIT",
+      "url": "https://justjoin.it/job-offer/accenture-data-engineer-data-analyst-internship-program-she-he-they--katowice-data"
+    },
+    {
+      "title": "Program Stażowy - WordPress &amp; Tester",
+      "company": "Develtio",
+      "experience": "Staż",
+      "salary": "2 000 PLN/month",
+      "location": "Warszawa",
+      "datePosted": "2025-08-04",
+      "validThrough": "2025-09-15",
+      "skills": [
+        "Polish",
+        "English",
+        "Testing",
+        "WordPress"
+      ],
+      "site": "JustJoinIT",
+      "url": "https://justjoin.it/job-offer/develtio-program-stazowy---wordpress-tester-warszawa-testing"
+    },
+    {
+      "title": "Salesforce Tester (Training Program)",
+      "company": "Britenet",
+      "experience": "Staż",
+      "salary": "Nie określono",
+      "location": "Lublin",
+      "datePosted": "2025-08-05",
+      "validThrough": "2025-09-04",
+      "skills": [
+        "Polish",
+        "English",
+        "ISTQB"
+      ],
+      "site": "JustJoinIT",
+      "url": "https://justjoin.it/job-offer/britenet-salesforce-tester-training-program--lublin-testing"
+    }
+  ],
+  "SJ": [
+    {
+      "site": "SolidJobs",
+      "url": "https://solid.jobs/offer/26561/godel-technologies-europe-junior-php-engineer",
+      "title": "Junior PHP Engineer",
+      "datePosted": "2025-08-05",
+      "validThrough": "2025-09-04",
+      "company": "Godel Technologies Europe",
+      "location": "Gdańsk",
+      "experience": "Junior",
+      "salary": "5 000 – 7 500 PLN",
+      "skills": [
+        "SQL",
+        "",
+        "Agile",
+        "PHP",
+        "Polski",
+        "REST",
+        "Angielski",
+        "Laravel"
+      ]
+    },
+    {
+      "site": "SolidJobs",
+      "url": "https://solid.jobs/offer/26559/godel-technologies-europe-junior-php-engineer",
+      "title": "Junior PHP Engineer",
+      "datePosted": "2025-08-05",
+      "validThrough": "2025-09-04",
+      "company": "Godel Technologies Europe",
+      "location": "Wrocław",
+      "experience": "Junior",
+      "salary": "5 000 – 7 500 PLN",
+      "skills": [
+        "SQL",
+        "",
+        "Agile",
+        "PHP",
+        "Polski",
+        "REST",
+        "Angielski",
+        "Laravel"
+      ]
+    },
+    {
+      "site": "SolidJobs",
+      "url": "https://solid.jobs/offer/26560/godel-technologies-europe-junior-php-engineer",
+      "title": "Junior PHP Engineer",
+      "datePosted": "2025-08-05",
+      "validThrough": "2025-09-04",
+      "company": "Godel Technologies Europe",
+      "location": "Łódź",
+      "experience": "Junior",
+      "salary": "5 000 – 7 500 PLN",
+      "skills": [
+        "SQL",
+        "",
+        "Agile",
+        "PHP",
+        "Polski",
+        "REST",
+        "Angielski",
+        "Laravel"
+      ]
+    },
+    {
+      "site": "SolidJobs",
+      "url": "https://solid.jobs/offer/26562/godel-technologies-europe-junior-php-engineer",
+      "title": "Junior PHP Engineer",
+      "datePosted": "2025-08-05",
+      "validThrough": "2025-09-04",
+      "company": "Godel Technologies Europe",
+      "location": "Białystok",
+      "experience": "Junior",
+      "salary": "5 000 – 7 500 PLN",
+      "skills": [
+        "SQL",
+        "",
+        "Agile",
+        "PHP",
+        "Polski",
+        "REST",
+        "Angielski",
+        "Laravel"
+      ]
+    },
+    {
+      "site": "SolidJobs",
+      "url": "https://solid.jobs/offer/26573/click-it-group-analityk-danych-java",
+      "title": "Analityk Danych (Java)",
+      "datePosted": "2025-08-05",
+      "validThrough": "2025-09-04",
+      "company": "Click IT Group",
+      "location": "Poznań",
+      "experience": "Junior",
+      "salary": "12 000 – 18 000 PLN",
+      "skills": [
+        "SQL",
+        "Data analysis",
+        "",
+        "Problem solving",
+        "Analytical thinking",
+        "Polski",
+        "Java",
+        "Angielski",
+        "Databases"
+      ]
+    }
+  ]
+}

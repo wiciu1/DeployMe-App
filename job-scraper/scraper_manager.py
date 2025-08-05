@@ -1,38 +1,46 @@
 from jjit_scraper import JJITScraper
 from nfj_scraper import NFJScraper
 from sj_scraper import SJScraper
+import json
 
-# TODO: Przetestuj scrapery
 
 class ScraperManager:
     def __init__(self):
         self.scrapers = [
-            # NFJScraper(),
+            NFJScraper(),
             JJITScraper(),
-            SJScraper(),
+            SJScraper()
         ]
 
-    def scrape_all(self, max_offers = 10):
-        all_offers = []
+    def scrape_all(self, max_offers_per_site=10):
+        results = {}
 
         for scraper in self.scrapers:
+            scraper_name = scraper.__class__.__name__.replace('Scraper', '')
+            print(f"\n=== Starting {scraper_name} scraper ===")
+
             try:
-                scraper.start()
-                offers = scraper.scrape(max_offers)
-                all_offers.append(offers)
-
+                offers = scraper.scrape(max_offers_per_site)
+                results[scraper_name] = offers
+                print(f"Successfully scraped {len(offers)} offers from {scraper_name}")
             except Exception as e:
-                print(f'[Error]: Failed to scrape data from: {scraper.__class__.__name__}: {str(e)}')
-                all_offers.append([])
+                print(f"[Error] {scraper_name} scraper failed: {str(e)}")
+                results[scraper_name] = []
 
-            finally:
-                try:
-                    scraper.stop()
-                except:
-                    pass
-        return all_offers
+        return results
+
+    def save_to_json(self, data, filename='offers.json'):
+        with open(filename, 'w', encoding='utf-8') as f:
+            json.dump(data, f, ensure_ascii=False, indent=2)
+        print(f"\nData saved to {filename}")
 
 
 if __name__ == '__main__':
-    scraper = ScraperManager()
-    print(scraper.scrape_all(20))
+    manager = ScraperManager()
+    results = manager.scrape_all(5)
+    manager.save_to_json(results)
+
+    #
+    print("\n=== Summary ===")
+    for site, offers in results.items():
+        print(f"{site}: {len(offers)} offers")

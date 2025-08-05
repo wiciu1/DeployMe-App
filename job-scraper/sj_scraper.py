@@ -1,61 +1,82 @@
-import time
 from datetime import datetime, timedelta
+from time import sleep
 
 from base_scraper import BaseScraper
+from selenium.webdriver.common.by import By
 
-# TESTED 03.08 | Valid
+class SJScraper(BaseScraper):
+    def get_offer_links(self, max_offers=None):
+        experience_levels = ['Junior', 'Staż']
+        offers_links = set()
 
+        for experience_level in experience_levels:
+            self.fetch_page(f"https://solid.jobs/offers/it;experiences={experience_level}")
 
-class SJScraper(BaseScraper):   
+            scroll_attempts = 0
+            max_scroll_attempts = 5
+
+            while scroll_attempts < max_scroll_attempts and (not max_offers or len(offers_links) < max_offers):
+                offers = self.driver.find_elements(By.CSS_SELECTOR, "a.offer")
+                new_offers = False
+
+                for offer in offers:
+                    href = offer.get_attribute('href')
+                    if href:
+                        full_url = href
+                        if full_url not in offers_links:
+                            offers_links.add(full_url)
+                            new_offers = True
+
+                            if max_offers and len(offers_links) >= max_offers:
+                                break
+
+                if not new_offers:
+                    scroll_attempts += 1
+                else:
+                    scroll_attempts = 0
+
+                self.scroll_down()
+                sleep(1.5)
+
+        return list(offers_links)[:max_offers] if max_offers else list(offers_links)
+
     def extract_offer_data(self, offer_url):
-        self.page.goto(offer_url)
-        time.sleep(1.5)
-
         try:
-            # Header
-            offer_header = self.page.locator("offer-details-header")
-            title = offer_header.locator("a").first.text_content()
-            company = offer_header.locator('//sj-icon-with-label//span').nth(0).text_content()
-            location = offer_header.locator('//sj-icon-with-label//span').nth(1).text_content()
+            self.driver.get(offer_url)
+            sleep(1.5)
 
-            # Salary
-            offer_salary = self.page.locator("offer-details-salary")
+            header = self.wait_for_element("offer-details-header")
+            title = header.find_element(By.TAG_NAME, "a").text
+            company = header.find_elements(By.XPATH, ".//sj-icon-with-label//span")[0].text
+            location = header.find_elements(By.XPATH, ".//sj-icon-with-label//span")[1].text
+
             try:
-                salary = offer_salary.locator("span.color-dark-grey").nth(0).text_content()
+                salary = self.wait_for_element("offer-details-salary span.color-dark-grey").text
             except:
-                salary = "0"
+                salary = "Nie określono"
 
-            # Requirements
-            offer_requirements = self.page.locator("offer-details-requirements")
-            skills_tags = self.page.locator("solidjobs-skill-display-advanced").all()
-            skills = set()
-            for skill in skills_tags:
-                skill_text = skill.text_content()
-                skills.add(skill_text)
+            skills_tags = self.driver.find_elements(By.TAG_NAME, "solidjobs-skill-display-advanced")
+            skills = {tag.text for tag in skills_tags}
 
-            experience_level = offer_requirements.locator("div.badge").nth(0).text_content()
+            requirements = self.wait_for_element("offer-details-requirements")
+            experience = requirements.find_elements(By.CSS_SELECTOR, "div.badge")[0].text
 
-            data = {
+            return {
                 "title": title,
                 "company": company,
                 "location": location,
                 "salary": salary,
                 "skills": list(skills),
-                "experience_level": experience_level
+                "experience_level": experience
             }
 
-            return data
-
         except Exception as e:
-            print(f"[Error]: {e}")
+            print(f"[Error] Extracting SJ offer: {str(e)}")
             return {}
 
     def cleanup_offer_data(self, offer_data, offer_url):
-        cleaned_salary = (
-            offer_data['salary'].replace('\xa0', '').replace('\u2009', ' ')
-            if offer_data.get('salary')
-            else "Nie określono"
-        )
+        cleaned_salary = (offer_data['salary'].replace('\xa0', '').replace('\u2009', ' ')
+                         if offer_data.get('salary') else "Nie określono")
 
         return {
             "site": "SolidJobs",
@@ -69,49 +90,3 @@ class SJScraper(BaseScraper):
             "salary": cleaned_salary,
             "skills": offer_data.get('skills', ['Nie określono']),
         }
-
-    def get_offer_links(self, max_offers=None):
-        experience_levels = ['Junior', 'Staż']
-        offers_links = set()
-
-        for experience_level in experience_levels:
-            self.fetch_page(f"https://solid.jobs/offers/it;experiences={experience_level}")
-
-            previous_count = 0
-            no_new_offers_scrolls = 0
-            max_scroll_attempts = 5
-
-            while True:
-                offers = self.page.locator("a.offer").all()
-                new_offers_found = False
-
-                for offer in offers:
-                    href = offer.get_attribute('href')
-                    if href:
-                        full_url = f'https://solid.jobs{href}'
-                        if full_url not in offers_links:
-                            offers_links.add(full_url)
-                            new_offers_found = True
-
-                            if max_offers and len(offers_links) >= max_offers:
-                                break
-
-                if max_offers and len(offers_links) >= max_offers:
-                    break
-
-                if not new_offers_found:
-                    no_new_offers_scrolls += 1
-                    if no_new_offers_scrolls >= max_scroll_attempts:
-                        print(f"[{experience_level}] no new offers after {max_scroll_attempts} scrolls.")
-                        break
-                else:
-                    no_new_offers_scrolls = 0
-
-                self.scroll_down(1000)
-                time.sleep(1.5)
-
-        return list(offers_links)
-
-if __name__ == "__main__":
-    s = SJScraper()
-    print(s.scrape(41))

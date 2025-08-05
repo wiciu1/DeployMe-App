@@ -1,73 +1,78 @@
 from abc import ABC, abstractmethod
-
-from playwright.sync_api import sync_playwright
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 from time import sleep
+import json
 
-# BaseScraper - abstract class of other scrapers
-# Has methods that are used by child classes (for specific site)
 
 class BaseScraper(ABC):
     def __init__(self):
-        self.page = None
-        self.browser = None
+        self.driver = None
+        self.options = webdriver.ChromeOptions()
+        self.options.add_argument('--false')
+        self.options.add_argument('--no-sandbox')
+        self.options.add_argument('--disable-dev-shm-usage')
+        self.options.add_argument('--disable-gpu')
+        self.options.add_argument('--window-size=1920,1080')
 
     def start(self):
-        self.playwright = sync_playwright().start()
-        self.browser = self.playwright.chromium.launch(headless=False)
-        self.page = self.browser.new_page()
+        self.driver = webdriver.Chrome(options=self.options)
+        self.driver.implicitly_wait(10)
 
     def stop(self):
-        self.browser.close()
-        self.playwright.stop()
+        if self.driver:
+            self.driver.quit()
 
-    # Method to scrape all offers from one site
-    def scrape(self, max_offers = None):
-
+    def scrape(self, max_offers=None):
         self.start()
-
-        # Get all offers links
         offers_urls = self.get_offer_links(max_offers)
-
         cleaned_data = []
 
-        for offer_url in offers_urls:
-            # Extract data
-            print(f"Extract data from: {offer_url}")
+        for offer_url in offers_urls[:max_offers] if max_offers else offers_urls:
+            print(f"Extracting data from: {offer_url}")
             extracted_data = self.extract_offer_data(offer_url)
             if extracted_data:
-                # Clean data
-                print(extracted_data)
-                cleaned_data.append( self.cleanup_offer_data(extracted_data, offer_url) )
+                cleaned = self.cleanup_offer_data(extracted_data, offer_url)
+                if cleaned:
+                    cleaned_data.append(cleaned)
             else:
-                print(f"[Warning]: No data extracted for {offer_url}")
+                print(f"[Warning] No data extracted for {offer_url}")
 
         self.stop()
         return cleaned_data
 
     def fetch_page(self, url):
         try:
-            self.page.goto(url, timeout=30000)
-            return self.page.content()
+            self.driver.get(url)
+            WebDriverWait(self.driver, 30).until(
+                EC.presence_of_element_located((By.TAG_NAME, 'body'))
+            )
+            return self.driver.page_source
         except Exception as e:
             print(f"Error fetching page {url}: {e}")
             return None
 
-    def scroll_down(self, step = 500):
-        previous_height = 0
-
+    def scroll_down(self, step=500):
+        current_height = 0
         while True:
-            self.page.evaluate(f'window.scrollBy(0, {step})')
+            new_height = self.driver.execute_script(
+                f"window.scrollTo(0, {current_height}); return document.body.scrollHeight;")
+            if new_height == current_height:
+                break
+            current_height = new_height
             sleep(1.5)
 
-            new_height = self.page.evaluate("document.body.scrollHeight")
+    def wait_for_element(self, selector, by=By.CSS_SELECTOR, timeout=10):
+        return WebDriverWait(self.driver, timeout).until(EC.presence_of_element_located((by, selector)))
 
-            # If height didn't change (nothing more)
-            if new_height == previous_height:
-                break
-
-            previous_height = new_height
-
-    # Abstract methods
+    def parse_json_ld(self):
+        try:
+            script = self.wait_for_element('script[type="application/ld+json"]')
+            return json.loads(script.get_attribute('textContent'))
+        except:
+            return None
 
     @abstractmethod
     def extract_offer_data(self, offer_url):
@@ -77,8 +82,6 @@ class BaseScraper(ABC):
     def cleanup_offer_data(self, offer_data, offer_url):
         pass
 
-    # Gets link for specific offer
     @abstractmethod
-    def get_offer_links(self, max_offers = None):
+    def get_offer_links(self, max_offers=None):
         pass
-
