@@ -5,7 +5,6 @@ from time import sleep
 from base_scraper import BaseScraper
 from selenium.webdriver.common.by import By
 
-
 class JJITScraper(BaseScraper):
     def get_offer_links(self, max_offers=None):
         experience_level_links = {
