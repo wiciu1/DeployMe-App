@@ -1,12 +1,9 @@
-package dev.deployme.DeployMe.offers;
+package dev.deployme.DeployMe.joboffers.offers;
 
+import dev.deployme.DeployMe.joboffers.offersync.OfferSyncService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -15,6 +12,11 @@ import java.util.List;
 @RequiredArgsConstructor
 public class OfferController {
 
+    // Responsible for posting data to database
+    // and communicating with FastAPI microservice
+    private final OfferSyncService offerSyncService;
+
+    // Responsible for getting data from database
     private final OfferService offerService;
 
     // Gets all offers from database
@@ -23,6 +25,11 @@ public class OfferController {
         return ResponseEntity.ok(offerService.getOffers());
     }
 
-
-
+    @PostMapping("/sync")
+    public ResponseEntity<String> syncOffers(
+            @RequestParam(defaultValue = "50") int max
+    ) {
+        int addedOffers = offerSyncService.syncOffers(max);
+        return ResponseEntity.ok(addedOffers + " offers added");
+    }
 }

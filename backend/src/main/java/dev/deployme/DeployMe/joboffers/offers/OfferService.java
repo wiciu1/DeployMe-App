@@ -1,4 +1,4 @@
-package dev.deployme.DeployMe.offers;
+package dev.deployme.DeployMe.joboffers.offers;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -13,5 +13,13 @@ public class OfferService {
 
     public List<JobOffer> getOffers() {
         return offerRepository.findAll();
+    }
+
+    public boolean existsByUrl(String url) {
+        return offerRepository.existsByUrl(url);
+    }
+
+    public void saveAll(List<JobOffer> offers) {
+        offerRepository.saveAll(offers);
     }
 }

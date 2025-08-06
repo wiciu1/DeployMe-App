@@ -1,4 +1,4 @@
-package dev.deployme.DeployMe.scraperclient;
+package dev.deployme.DeployMe.joboffers.scraperclient;
 
 import java.time.LocalDate;
 import java.util.List;

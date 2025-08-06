@@ -1,4 +1,4 @@
-package dev.deployme.DeployMe.scraperclient;
+package dev.deployme.DeployMe.joboffers.scraperclient;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ScraperServiceClient {

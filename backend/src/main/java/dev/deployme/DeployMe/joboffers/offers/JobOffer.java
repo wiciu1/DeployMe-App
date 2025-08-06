@@ -1,4 +1,4 @@
-package dev.deployme.DeployMe.offers;
+package dev.deployme.DeployMe.joboffers.offers;
 
 import jakarta.persistence.*;
 import lombok.*;
