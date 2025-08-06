@@ -1,7 +1,6 @@
 package dev.deployme.DeployMe.scraperclient;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
+import java.time.LocalDate;
 import java.util.List;
 
 public record JobOfferDto(
@@ -12,7 +11,7 @@ public record JobOfferDto(
         String location,
         String experience,
         String salary,
-        @JsonProperty("datePosted") String datePosted,
-        @JsonProperty("validThrough") String validThrough,
+        LocalDate datePosted,
+        LocalDate validThrough,
         List<String> skills
 ) {}

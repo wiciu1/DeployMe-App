@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/v1/offers")
+@RequestMapping("/api/v1/scrape")
 @RequiredArgsConstructor
 public class ScraperController {
 

@@ -95,6 +95,9 @@ class NFJScraper(BaseScraper):
             if skills:
                 result["skills"] = [skill.get("value") for skill in skills if skill.get("value")]
 
+            if result["experience"] == 'Trainee':
+                result["experience"] = 'Staż'
+
             return result
 
         except Exception as e:
