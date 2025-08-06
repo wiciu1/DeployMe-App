@@ -79,14 +79,14 @@ class SJScraper(BaseScraper):
                          if offer_data.get('salary') else "Nie określono")
 
         return {
-            "site": "SolidJobs",
-            "url": offer_url,
             "title": offer_data.get('title', 'Nie określono'),
+            "company": offer_data.get('company', 'Nie określono'),
+            "experience": offer_data.get('experience_level', 'Nie określono'),
             "datePosted": datetime.now().strftime('%Y-%m-%d'),
             "validThrough": (datetime.now() + timedelta(days=30)).strftime('%Y-%m-%d'),
-            "company": offer_data.get('company', 'Nie określono'),
             "location": offer_data.get('location', 'Nie określono'),
-            "experience": offer_data.get('experience_level', 'Nie określono'),
             "salary": cleaned_salary,
             "skills": offer_data.get('skills', ['Nie określono']),
+            "site": "SolidJobs",
+            "url": offer_url
         }

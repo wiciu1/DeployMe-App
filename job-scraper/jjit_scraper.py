@@ -87,10 +87,10 @@ class JJITScraper(BaseScraper):
                 "title": json_data.get("title", "Nie określono"),
                 "company": json_data.get("hiringOrganization", {}).get("name", "Nie określono"),
                 "experience": experience_level,
-                "salary": salary,
-                "location": json_data.get("jobLocation", {}).get("address", {}).get("addressLocality", "Nie określono"),
                 "datePosted": format_date(json_data.get("datePosted", "")),
                 "validThrough": format_date(json_data.get("validThrough", "")),
+                "location": json_data.get("jobLocation", {}).get("address", {}).get("addressLocality", "Nie określono"),
+                "salary": salary,
                 "skills": skills_tag
             }
 

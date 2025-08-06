@@ -34,3 +34,6 @@ build/
 
 ### APPLICATION PROPERTIES ###
 backend/src/main/resources/application.properties
+
+### JOB SCRAPER ###
+/job-scraper/offers.json
