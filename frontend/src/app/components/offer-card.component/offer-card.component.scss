@@ -1,0 +1,134 @@
+$dark-bg: #1E293B;
+$darker-bg: #0F172A;
+$text-light: #F8FAFC; 
+$text-muted: #94A3B8; 
+$primary: #4ADE80; 
+$primary-light: rgba(74, 222, 128, 0.1);
+$border-color: #334155;
+
+.offer-card {
+  background: $dark-bg;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  border: 1px solid $border-color;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  margin-bottom: 20px;
+  color: $text-light;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.3);
+    background: $darker-bg;
+  }
+}
+
+.offer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-decoration: none;
+  color: $text-light;
+  margin-bottom: 16px;
+
+  &:hover {
+    .offer-title {
+      color: $primary;
+    }
+    .external-link-icon {
+      opacity: 1;
+      transform: translateX(2px);
+    }
+  }
+}
+
+.offer-title {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+.external-link-icon {
+  opacity: 0.7;
+  transition: all 0.2s ease;
+  font-size: 1rem;
+  color: $primary;
+}
+
+.offer-meta {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.meta-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.9rem;
+  color: $text-muted;
+}
+
+.meta-icon {
+  font-size: 1rem;
+}
+
+.offer-details {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 12px;
+  margin-bottom: 20px;
+  padding: 16px 0;
+  border-top: 1px dashed $border-color;
+  border-bottom: 1px dashed $border-color;
+}
+
+.detail-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.detail-label {
+  font-size: 0.8rem;
+  color: $text-muted;
+  font-weight: 500;
+}
+
+.detail-value {
+  font-size: 0.95rem;
+  color: $text-light;
+  
+  &.highlight {
+    color: $primary;
+    font-weight: 500;
+  }
+}
+
+.skills-section {
+  margin-top: 16px;
+}
+
+.skills-title {
+  font-size: 0.9rem;
+  color: $text-muted;
+  margin: 0 0 8px 0;
+  font-weight: 500;
+}
+
+.skills-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.skill-tag {
+  background: $primary-light;
+  color: $primary;
+  padding: 4px 12px;
+  border-radius: 16px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  border: 1px solid rgba($primary, 0.3);
+}

@@ -5,5 +5,6 @@ export const routes: Routes = [
         path: '',
         loadComponent: () => 
             import('./pages/offer.component/offer.component').then((m) => m.OfferComponent),
+        title: 'DeployMe | Oferty'
     },
 ];

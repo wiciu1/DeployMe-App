@@ -1,0 +1,46 @@
+<div class="offer-card">
+  <a [href]="offer.url" target="_blank" class="offer-header">
+    <h3 class="offer-title">{{ offer.title }}</h3>
+    <span class="external-link-icon">↗</span>
+  </a>
+
+  <div class="offer-meta">
+    <div class="meta-item">
+      <span class="meta-icon">🏢</span>
+      <span class="meta-text">{{ offer.company || 'Firma nie podana' }}</span>
+    </div>
+    
+    <div class="meta-item">
+      <span class="meta-icon">📍</span>
+      <span class="meta-text">{{ offer.location || 'Lokalizacja nie podana' }}</span>
+    </div>
+  </div>
+
+  <div class="offer-details">
+    <div class="detail-item">
+      <span class="detail-label">Doświadczenie:</span>
+      <span class="detail-value">{{ offer.experience || 'Dowolne' }}</span>
+    </div>
+    
+    <div class="detail-item">
+      <span class="detail-label">Wynagrodzenie:</span>
+      <span class="detail-value highlight">{{ offer.salary || 'Do negocjacji' }}</span>
+    </div>
+    
+    <div class="detail-item">
+      <span class="detail-label">Dodano:</span>
+      <span class="detail-value">{{ offer.datePosted }}</span>
+    </div>
+  </div>
+  
+  @if (offer.skills?.length) {
+    <div class="skills-section">
+      <h4 class="skills-title">Wymagane umiejętności:</h4>
+      <div class="skills-list">
+        @for (skill of offer.skills; track skill) {
+          <span class="skill-tag">{{ skill }}</span>
+        }
+      </div>
+    </div>
+  }
+</div>

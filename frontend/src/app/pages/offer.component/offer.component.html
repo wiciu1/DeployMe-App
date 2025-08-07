@@ -1,22 +1,12 @@
 <div class="container">
   <h1>Oferty pracy</h1>
 
-  <!-- Przycisk synchronizacji -->
-  <button 
-    (click)="syncOffers()" 
-    class="sync-button"
-  >
-    Pobierz oferty
-  </button>
-
-  <!-- Komunikat o błędzie -->
   @if (error) {
     <div class="error-message">
       {{ error }}
     </div>
   }
 
-  <!-- Lista ofert -->
   @if (offersLoading && offers.length === 0) {
     <p>Trwa ładowanie ofert...</p>
   } @else if (offers.length === 0) {
@@ -24,12 +14,7 @@
   } @else {
     <div class="offers-list">
       @for (offer of offers; track offer.id) {
-        <div class="offer-card">
-          <h2>{{ offer.title }}</h2>
-          <p><strong>Firma:</strong> {{ offer.company }}</p>
-          <p><strong>Lokalizacja:</strong> {{ offer.location }}</p>
-          <p><strong>Umiejętności:</strong> {{ offer.skills?.join(', ') || 'Brak' }}</p>
-        </div>
+        <app-offer-card [offer]="offer"></app-offer-card>
       }
     </div>
   }

@@ -2,11 +2,12 @@ import { ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Offer } from '../../models/offer';
 import { OfferService } from '../../services/offer.service';
+import { OfferCardComponent } from '../../components/offer-card.component/offer-card.component';
 
 @Component({
   standalone: true,
   selector: 'app-offer',
-  imports: [CommonModule],
+  imports: [CommonModule, OfferCardComponent],
   templateUrl: './offer.component.html',
   styleUrl: './offer.component.scss'
 })
@@ -18,12 +19,11 @@ export class OfferComponent implements OnInit {
   error: string | null = null;
 
   private offerService = inject(OfferService);
+  private cdr = inject(ChangeDetectorRef)
 
   ngOnInit(): void {
     this.loadOffers();
   }
-
-  constructor(private cdr: ChangeDetectorRef) {}
 
   loadOffers(): void {
   this.offerService.getOffers().subscribe({
@@ -39,14 +39,4 @@ export class OfferComponent implements OnInit {
   });
 }
 
-  syncOffers(max: number = 50): void {
-    this.offerService.syncOffers(max).subscribe({
-      next: () => {
-        this.loadOffers();
-      },
-      error: (err) => {
-        this.error = 'Błąd synchronizacji';
-      }
-    });
-  }
 }
