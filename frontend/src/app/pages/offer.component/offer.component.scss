@@ -1,3 +1,11 @@
+$dark-bg: #1E293B;
+$darker-bg: #0F172A;
+$text-light: #F8FAFC; 
+$text-muted: #94A3B8; 
+$primary: #4ADE80; 
+$primary-light: rgba(74, 222, 128, 0.1);
+$border-color: #334155;
+
 .container {
   max-width: 800px;
   margin: 0 auto;
@@ -34,4 +42,95 @@
   padding: 15px;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.paginator-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin: 1.5rem 0;
+}
+
+.mat-paginator {
+  background: $dark-bg;
+  margin: 1.5rem auto; 
+  font-family: inherit;
+  border-radius: 50px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 0.5rem 1.5rem; 
+  border: 1px solid $border-color;
+  display: inline-flex; 
+  width: auto;
+  color: $text-light;
+}
+
+
+.mat-paginator-container {
+  justify-content: center !important;
+  min-height: 48px;
+  width: auto;
+}
+
+::ng-deep .mat-paginator .mat-icon {
+  color: $primary !important;
+}
+
+.mat-ripple {
+  color: $primary !important;
+}
+
+
+.mat-paginator-navigation-previous,
+.mat-paginator-navigation-next {
+  background: white !important;
+  border-radius: 50% !important;
+  width: 36px !important;
+  height: 36px !important;
+  margin: 0 4px !important;
+  border: 1px solid #e0e0e0 !important;
+  color: $primary !important;
+  fill: $primary !important;
+  
+  &:hover {
+    background: #f5f5f5 !important;
+  }
+
+  &[disabled] {
+    color: #bdbdbd !important;
+    background: #f5f5f5 !important;
+  }
+}
+
+
+.mat-paginator-range-actions button {
+  min-width: 36px !important;
+  height: 36px !important;
+  margin: 0 4px !important;
+  border-radius: 50% !important;
+  background: transparent !important;
+  color: $primary !important;
+  font-weight: 500;
+  color: $primary;
+  
+  &:hover:not(.mat-button-disabled) {
+    background: #f5f5f5 !important;
+  }
+}
+
+.mat-paginator-range-actions button.mat-button-toggle-checked {
+  background: #4CAF50 !important;
+  color: white !important;
+  font-weight: 600;
+}
+
+.mat-paginator-page-size,
+.mat-paginator-page-size-label,
+.mat-paginator-range-label {
+  display: none !important;
+}
+
+.mat-paginator-icon {
+  width: 24px !important;
+  height: 24px !important;
+  font-size: 24px !important;
 }

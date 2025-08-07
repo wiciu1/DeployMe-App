@@ -2,6 +2,9 @@ package dev.deployme.DeployMe.joboffers.offers;
 
 import dev.deployme.DeployMe.joboffers.offersync.OfferSyncService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,10 +23,17 @@ public class OfferController {
     // Responsible for getting data from database
     private final OfferService offerService;
 
+    private final int perPage = 10;
+
     // Gets all offers from database
     @GetMapping
-    public ResponseEntity<List<JobOffer>> getOffers() {
-        return ResponseEntity.ok(offerService.getOffers());
+    public ResponseEntity<Page<JobOffer>> getOffers(
+            @RequestParam(defaultValue = "0" ) int page
+    ) {
+        Pageable pageable = PageRequest.of(page, perPage);
+        Page<JobOffer> offers = offerService.getOffers(pageable);
+
+        return ResponseEntity.ok(offers);
     }
 
     @PostMapping("/sync")
