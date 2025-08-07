@@ -1,0 +1,98 @@
+/* Color Variables */
+$dark-bg: #1a2a32;  // Dark slate (not pure black)
+$primary-green: #4caf50;  // Vibrant green
+$light-green: #81c784;  // Softer green
+$white: #ffffff;
+
+.app-header {
+  background-color: $dark-bg;
+  color: $white;
+  padding: 0.8rem 2rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  
+  .logo-icon {
+    font-size: 1.8rem;
+  }
+  
+  .logo-text {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+    background: linear-gradient(to right, $primary-green, $light-green);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+.nav-menu {
+  display: flex;
+  gap: 2rem;
+  
+  .nav-link {
+    color: rgba($white, 0.9);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    padding: 0.5rem 0;
+    border-bottom: 2px solid transparent;
+    
+    &:hover {
+      color: $white;
+      border-bottom-color: $primary-green;
+    }
+    
+    &.active {
+      color: $primary-green;
+    }
+  }
+}
+
+.user-actions {
+  display: flex;
+  gap: 1rem;
+  
+  .action-button {
+    padding: 0.5rem 1.2rem;
+    border-radius: 4px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    
+    &.login {
+      background: transparent;
+      color: $white;
+      border: 1px solid rgba($white, 0.3);
+      
+      &:hover {
+        background: rgba($white, 0.1);
+      }
+    }
+    
+    &.signup {
+      background: $primary-green;
+      color: $white;
+      border: none;
+      
+      &:hover {
+        background: darken($primary-green, 8%);
+      }
+    }
+  }
+}
