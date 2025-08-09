@@ -54,4 +54,40 @@ public class JobOffer {
         this.validThrough = validThrough;
         this.skills = skills;
     }
+
+    // Parsing minSalary (for filtering)
+    @Transient
+    public Integer getParsedMaxSalary() {
+        if (salary == null || salary.isEmpty()) {
+            return null;
+        }
+        try {
+            // Format XXXX-YYYY PLN
+            if (salary.matches(".*\\d[ \\d]*-[ \\d]*\\d.*")) {
+                String normalized = salary.replaceAll("[^0-9-]", "");
+                String[] parts = normalized.split("-");
+
+                if (parts.length >= 2) {
+                    String maxPart = parts[1].replaceAll("[^0-9]", "");
+                    return Integer.parseInt(maxPart);
+                }
+            }
+
+            // Format "XXX PLN/Hour"
+            if (salary.matches(".*\\d+.*PLN/Hour.*")) {
+                String numStr = salary.replaceAll("[^0-9]", "");
+                int hourlyRate = Integer.parseInt(numStr);
+                return hourlyRate * 160; // Assuming its full-time job (+- 160h)
+            }
+
+            // 3. Format "XXX PLN/Month"
+            if (salary.matches(".*\\d+.*PLN/Month.*")) {
+                String numStr = salary.replaceAll("[^0-9]", "");
+                return Integer.parseInt(numStr);
+            }
+        } catch (NumberFormatException e) {
+            return -1;
+        }
+    return -1;
+    }
 }

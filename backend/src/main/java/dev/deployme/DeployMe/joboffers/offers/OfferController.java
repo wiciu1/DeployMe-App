@@ -1,5 +1,6 @@
 package dev.deployme.DeployMe.joboffers.offers;
 
+import dev.deployme.DeployMe.joboffers.offers.filters.OfferFilterDto;
 import dev.deployme.DeployMe.joboffers.offersync.OfferSyncService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -43,4 +44,25 @@ public class OfferController {
         int addedOffers = offerSyncService.syncOffers(max);
         return ResponseEntity.ok(addedOffers + " offers added");
     }
+
+    /// ### FILTERING ###
+
+    @GetMapping("/filter")
+    public ResponseEntity<Page<JobOffer>> filterOffers(
+            @RequestParam(required = false) List<String> locations,
+            @RequestParam(required = false) List<String> experienceLevels,
+            @RequestParam(required = false) List<String> skills,
+            @RequestParam(defaultValue = "0" ) int page
+    ) {
+        OfferFilterDto filters = new OfferFilterDto(
+                locations, experienceLevels, skills
+        );
+
+        Pageable pageable = PageRequest.of(page, perPage);
+        Page<JobOffer> offers = offerService.getFilteredOffers(filters, pageable);
+
+        return ResponseEntity.ok(offers);
+    }
+
+
 }
