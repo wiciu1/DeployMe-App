@@ -1,23 +1,13 @@
 <div class="container">
+  <app-filter (filtersChanged)="onFiltersChanged($event)"></app-filter>
 
-  
-  @if (offersLoading) {
+  @if (offersLoading && offers.length === 0) {
     <mat-spinner diameter="50"></mat-spinner>
-  } @else {
-    <div class="offers-list">
-      @for (offer of offers; track offer.id) {
-        <app-offer-card [offer]="offer"></app-offer-card>
-      }
-    </div>
-  }
-  @if (error) {
+    <p>Trwa ładowanie ofert...</p>
+  } @else if (error) {
     <div class="error-message">
       {{ error }}
     </div>
-  }
-
-  @if (offersLoading && offers.length === 0) {
-    <p>Trwa ładowanie ofert...</p>
   } @else if (offers.length === 0) {
     <p>Brak dostępnych ofert</p>
   } @else {
@@ -29,14 +19,13 @@
   }
 
   <div class="paginator-container">
-    <mat-paginator class="mat-paginator"
-   [length]="totalItems"
-                 [pageSize]="pageSize"
-                 [pageIndex]="currentPage"
-                 [pageSizeOptions]="[5, 10, 20]"
-                 (page)="onPageChange($event)"
-                 hidePageSize="true"
-                 aria-label="Select page">
-  </mat-paginator>
+    <mat-paginator [length]="totalItems"
+                   [pageSize]="pageSize"
+                   [pageIndex]="currentPage"
+                   [pageSizeOptions]="[5, 10, 20]"
+                   (page)="onPageChange($event)"
+                   hidePageSize="true"
+                   aria-label="Select page">
+    </mat-paginator>
   </div>
 </div>

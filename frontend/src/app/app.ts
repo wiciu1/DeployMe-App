@@ -3,10 +3,15 @@ import { ActivatedRoute, NavigationEnd, Router, RouterOutlet } from '@angular/ro
 import { HeaderComponent } from "./components/header.component/header.component";
 import { Title } from '@angular/platform-browser';
 import { filter, map, mergeMap } from 'rxjs/operators';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, HeaderComponent],
+  imports: [
+    RouterOutlet, 
+    HeaderComponent,
+    ReactiveFormsModule
+    ],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })

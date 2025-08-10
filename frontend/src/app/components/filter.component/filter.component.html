@@ -1,0 +1,28 @@
+<div class="filter-container">
+  <form [formGroup]="filterForm" (ngSubmit)="applyFilters()">
+    <div class="form-group">
+      <label>Lokalizacje (oddziel przecinkami):</label>
+      <input type="text" formControlName="location" placeholder="np. Kraków, Warszawa">
+    </div>
+
+    <div class="form-group">
+      <label>Poziom doświadczenia:</label>
+      <input type="text" formControlName="experience" placeholder="np. Junior, Mid">
+    </div>
+
+    <div class="form-group">
+      <label>Umiejętności (oddziel przecinkami):</label>
+      <input type="text" formControlName="skill" placeholder="np. Java, Angular">
+    </div>
+
+    <div class="form-group">
+      <!-- <label>Minimalne wynagrodzenie (PLN):</label> -->
+      <!-- <input type="number" formControlName="minSalary" placeholder="np. 5000"> -->
+    </div>
+
+    <div class="button-group">
+      <button type="submit" class="apply-btn">Zastosuj filtry</button>
+      <button type="button" (click)="resetFilters()" class="reset-btn">Wyczyść filtry</button>
+    </div>
+  </form>
+</div>

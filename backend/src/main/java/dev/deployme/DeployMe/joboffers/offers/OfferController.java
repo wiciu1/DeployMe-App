@@ -49,13 +49,13 @@ public class OfferController {
 
     @GetMapping("/filter")
     public ResponseEntity<Page<JobOffer>> filterOffers(
-            @RequestParam(required = false) List<String> locations,
-            @RequestParam(required = false) List<String> experienceLevels,
-            @RequestParam(required = false) List<String> skills,
+            @RequestParam(required = false) List<String> location,
+            @RequestParam(required = false) List<String> experience,
+            @RequestParam(required = false) List<String> skill,
             @RequestParam(defaultValue = "0" ) int page
     ) {
         OfferFilterDto filters = new OfferFilterDto(
-                locations, experienceLevels, skills
+                location, experience, skill
         );
 
         Pageable pageable = PageRequest.of(page, perPage);
